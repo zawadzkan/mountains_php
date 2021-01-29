@@ -6,6 +6,7 @@
     <title>Górskie wędrówki</title>
     <link rel="stylesheet" href="main.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> 
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 <?php
@@ -33,10 +34,8 @@ session_start();
             <input type="text" name="login" placeholder="Login">
             <input type="password" name="haslo" placeholder="Hasło">
             <input type="submit" value="Zaloguj się">
+            <input type="submit" value="Zarejestruj się za darmo!" class="przycisk">
         </form>
-    </div>
-    <div class="rejestracja" action="rejestracja.php">
-        <input type="submit" name="" value="Załóż darmowe konto! - Zarejestruj się">
     </div>
 
     <?php
@@ -79,6 +78,7 @@ session_start();
             <label> E-mail </label>
             <input type="text" name="email" class="form-control" placeholder="Wpisz adres e-mail">
         </div>
+        <br><div class="g-recaptcha" data-sitekey="6Lf6Wy8aAAAAAERXd4f5DvqOlcbpLs4oPNsB5pYR"></div></br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
@@ -89,17 +89,7 @@ session_start();
   </div>
 </div>
 
-    <div class="container">
-        <div class="jumbotron">
-            <div class="card">
-                <div class="card-body">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rejestracjaModal">
-                        Zarejestruj się za darmo!
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>

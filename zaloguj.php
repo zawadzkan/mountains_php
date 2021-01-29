@@ -32,9 +32,7 @@ if($polaczenie->connect_error!=0)
     $haslo_z_bazy = $row['haslo'];
 
     if($login_z_bazy === $login && $haslo_z_bazy === $haslo){
-      echo "Natalka to parówa";
       $_SESSION['zalogowany'] = "true";
-      echo "jest oki";
      
       unset($_SESSION['blad']);
       header('Location: kursy.php');
@@ -43,7 +41,7 @@ if($polaczenie->connect_error!=0)
     }
   }
   $polaczenie->close();
-  $_SESSION['blad'] = '<span style="color: red; font-size: 100px">Nieprawidłowy login lub hasło!</span>';
+  $_SESSION['blad'] = '<span class="blad">Nieprawidłowy login lub hasło!</span>';
   header('Location: logowanie.php');
   exit();
 ?> 

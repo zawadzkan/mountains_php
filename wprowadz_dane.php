@@ -1,4 +1,3 @@
-
 <?php 
 session_start();
 
@@ -22,6 +21,9 @@ $nazwisko = $_POST['nazwisko'];
 $login = $_POST['login'];
 $haslo = $_POST['haslo1'];
 $email = $_POST['email'];
+$sekret = "6Lf6Wy8aAAAAABbGkT-5W8FJAIxGpIbyM4IiqvX1";
+$sprawdz = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$sekret.'&response='.$_POST['g-recaptcha-response']);
+$odpowiedz = json_decode($sprawdz); 
 
 
 // rejestrowanie
@@ -51,7 +53,7 @@ exit();
 
 function blad($polaczenie){
     $polaczenie->close();
-    $_SESSION['blad'] = '<span style="color: red; font-size: 100px">Nieprawidłowy login lub hasło!</span>';
+    $_SESSION['blad'] = '<span class="blad">Nieprawidłowy login lub hasło!</span>';
     exit();
 }
 
