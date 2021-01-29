@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-echo $_SESSION['zalogowany'];
 if (!isset($_SESSION['zalogowany'])) {
     header('Location: logowanie.php');
     exit();
@@ -24,14 +23,10 @@ if (!isset($_SESSION['zalogowany'])) {
 
     <!--     
     <?php
-
     echo "<p>Witaj " . $_SESSION['login'] . '! [<a href="wyloguj.php">Wyloguj się!</a>]</p>';
 
     $dataczas = new DateTime();
     echo $dataczas->format('Y-m-d H:i:s');
-
-
-
     ?>  -->
 
 
