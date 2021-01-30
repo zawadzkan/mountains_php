@@ -40,8 +40,10 @@ if($polaczenie->connect_error!=0)
       
     }
   }
+ 
   $polaczenie->close();
   $_SESSION['blad'] = '<span class="blad">Nieprawidłowy login lub hasło!</span>';
   header('Location: logowanie.php');
   exit();
+  
 ?> 

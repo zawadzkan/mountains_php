@@ -20,15 +20,9 @@ if (!isset($_SESSION['zalogowany'])) {
 
     <?php require_once "menu.php"; ?>
 
-
-    <!--     
-    <?php
-    echo "<p>Witaj " . $_SESSION['login'] . '! [<a href="wyloguj.php">Wyloguj się!</a>]</p>';
-
-    $dataczas = new DateTime();
-    echo $dataczas->format('Y-m-d H:i:s');
-    ?>  -->
-
+    <div class="okno">
+    <iframe width="1000" height="500" src="http://dane.gov.pl/embed/resource/7005" frameBorder="0"></iframe>
+    </div>
 
 </body>
 

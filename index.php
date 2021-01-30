@@ -1,6 +1,6 @@
 <?php
-session_start();
-echo $_SESSION['zalogowany']; ?>
+session_start(); 
+?>
 
 <!DOCTYPE HTML>
 <html lang="pl">

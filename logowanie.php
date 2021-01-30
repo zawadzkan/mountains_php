@@ -18,15 +18,8 @@ session_start();
 //     exit();
 // }
 ?>
-    <div class="menu">
-        <ul>
-            <li><a href="index.php">Strona główna</a></li>
-            <li><a href="wyprawy.php">Nasze wyprawy</a></li>
-            <li><a href="kursy.php">Kursy</a></li>
-            <li><a href="o_nas.php">O nas</a></li>
-            <li><a href="logowanie.php">Zaloguj się</a></li>
-        </ul>
-    </div>
+
+    <?php require_once "menu.php"; ?>
 
     <div class="box">
         <form name="logForm" action="zaloguj.php" method="post">
@@ -34,7 +27,6 @@ session_start();
             <input type="text" name="login" placeholder="Login">
             <input type="password" name="haslo" placeholder="Hasło">
             <input type="submit" value="Zaloguj się">
-            <input type="submit" value="Zarejestruj się za darmo!" class="przycisk">
         </form>
     </div>
 
@@ -44,7 +36,7 @@ session_start();
             ?>
 
 
-
+<!-- 
 <div class="modal fade" id="rejestracjaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -87,7 +79,68 @@ session_start();
       </form>
      </div>
   </div>
+</div> -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="rejestracjaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="wprowadz_dane.php" method="post">
+      <div class="modal-body">
+        <div class="form-rejestr">
+            <label> Imię </label>
+            <input type="text" name="imie" class="form-control" placeholder="Wpisz imię">
+        </div>
+        <div class="form-rejestr">
+            <label> Nazwisko </label>
+            <input type="text" name="nazwisko" class="form-control" placeholder="Wpisz nazwisko">
+        </div>
+        <div class="form-rejestr">
+            <label> Login </label>
+            <input type="text" name="login" class="form-control" placeholder="Wpisz login">
+        </div>
+        <div class="form-rejestr">
+            <label> Hasło </label>
+            <input type="password" name="haslo1" class="form-control" placeholder="Wpisz hasło">
+        </div>
+        <div class="form-rejestr">
+            <label> Powtórz hasło </label>
+            <input type="password" name="haslo2" class="form-control" placeholder="Powtórz hasło">
+        </div>
+        <div class="form-rejestr">
+            <label> E-mail </label>
+            <input type="text" name="email" class="form-control" placeholder="Wpisz adres e-mail">
+        </div>
+        <br><div class="g-recaptcha" data-sitekey="6Lf6Wy8aAAAAAERXd4f5DvqOlcbpLs4oPNsB5pYR"></div></br>
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+        <button type="submit" name="wprowadz" class="btn btn-primary">Zarejestruj</button>
+      </div>
+      </form>
+    </div>
+  </div>
 </div>
+
+<div class="container">
+    <div class="jumbotron">
+        <div class="card">
+            <div class="card-body">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rejestracjaModal">
+                    Zarejestruj się
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 
 

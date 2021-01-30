@@ -84,7 +84,7 @@ body{
     border: #6A1B9A;
 }
 
-.box.przycisk input[type = "submit"]{
+.przycisk input[type = "submit"]{
     border: 0;
     background: #CE93D8;
     display: block;
@@ -99,7 +99,7 @@ body{
     cursor: pointer;
 }
 
-.box.przycisk input[type = "submit"]:hover{
+.przycisk input[type = "submit"]:hover{
     background: #6A1B9A;
     border: #6A1B9A;
 }
@@ -236,5 +236,13 @@ h1{
     width: 100px;
 }
 
+.okno{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5rem 10rem;
+    border-radius: 15px;
+}
 
 

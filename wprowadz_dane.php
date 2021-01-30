@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 session_start();
 
 require_once "connect.php";
@@ -57,4 +57,5 @@ function blad($polaczenie){
     exit();
 }
 
-?> 
+?>  
+
