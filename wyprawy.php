@@ -37,6 +37,7 @@ session_start(); ?>
         foreach($videos as $video){
             echo '<iframe width="360" height="215" src="https://www.youtube.com/embed/'.$video['video_id'].'" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
             echo "</div>";
+            echo "<p>wybierz kurs</p>";
         }
 
 
