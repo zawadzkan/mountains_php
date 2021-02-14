@@ -21,7 +21,7 @@ if($polaczenie->connect_error!=0)
   
   echo $login;
 
-  $query = sprintf("SELECT * FROM zalogowani WHERE login ='%s'",
+  $query = sprintf("SELECT * FROM uzytkownicy WHERE login ='%s'",
   mysqli_real_escape_string($polaczenie,$login));
 
   $wynik = $polaczenie->query($query);
@@ -31,8 +31,10 @@ if($polaczenie->connect_error!=0)
     $login_z_bazy = $row['login'];
     $haslo_z_bazy = $row['haslo'];
 
+
     if($login_z_bazy === $login && $haslo_z_bazy === $haslo){
-      $_SESSION['zalogowany'] = "true";
+      $id_uzytkownika = $row['id'];
+      $_SESSION['id_uzytkownika'] =  $id_uzytkownika;
      
       unset($_SESSION['blad']);
       header('Location: kursy.php');

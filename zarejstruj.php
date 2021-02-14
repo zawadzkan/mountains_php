@@ -23,41 +23,30 @@ $email = $_POST['email'];
 $sekret = "6Lf6Wy8aAAAAABbGkT-5W8FJAIxGpIbyM4IiqvX1";
 $sprawdz = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$sekret.'&response='.$_POST['g-recaptcha-response']);
 $odpowiedz = json_decode($sprawdz); 
+
 zarejestruj($polaczenie, $imie, $nazwisko, $login, $haslo, $email);
-// zaloguj($polaczenie, $login);
+zaloguj($polaczenie, $login);
+zakoncz($polaczenie);
 
-// logowanie - dodanie wpisu do tabeli zalogowani
-// $query = "INSERT INTO zalogowani (`imie`, `nazwisko`, `login`, `haslo`,`email`)
-// VALUES ('$imie','$nazwisko','$login','$haslo','$email')";
-// $wynik_logowania = $polaczenie->query($query);
-
-// if(!$wynik_logowania){
-//     blad($polaczenie);
-// }
-// $polaczenie->close();
-// $_SESSION['zalogowany'] = "true";
-
-// header('Location: index.php');
-// exit();
-
-
-
+function zakoncz($polaczenie){
+    $polaczenie->close();
+    header('Location: index.php');
+    exit();
+}
 
 function zarejestruj($polaczenie, $imie, $nazwisko, $login, $haslo, $email){
-    // rejestrowanie
     zwaliduj_dane_uzytkownika($polaczenie, $email, $login);
-    echo "Gituwa";
-    //zapisz_uzytkownika_do_bazy();
+    zapisz_uzytkownika_do_bazy($polaczenie, $imie, $nazwisko, $login, $haslo, $email);
+}
 
+function zapisz_uzytkownika_do_bazy($polaczenie, $imie, $nazwisko, $login, $haslo, $email){
+    $query = "INSERT INTO uzytkownicy (`imie`, `nazwisko`, `login`, `haslo`, `email`)
+    VALUES ('$imie','$nazwisko','$login','$haslo','$email')";
+    $wynik = $polaczenie->query($query);
 
-
-    // $query = "INSERT INTO uzytkownicy (`imie`, `nazwisko`, `login`, `haslo`, `email`)
-    // VALUES ('$imie','$nazwisko','$login','$haslo','$email')";
-    // $wynik = $polaczenie->query($query);
-    // echo $wynik;
-    // if(!$wynik){
-    //     blad($polaczenie);
-    // }
+    if(!$wynik){
+        blad($polaczenie, "Nie udalo sie dodać uzytkownika");
+    }   
 }
 
 function zwaliduj_dane_uzytkownika($polaczenie, $email, $login){
@@ -111,39 +100,29 @@ function sprawdz_czy_mail_zajety($polaczenie, $email){
     return false;
 }
 
-function pobierz_id_uzytkownika($polaczenie,$login){
-    // $nazwa_uzytkownika_dla_sql = mysqli_real_escape_string($polaczenie,$login);
-    // $query = sprintf("SELECT * FROM uzytkownicy WHERE login ='%s'",$nazwa_uzytkownika_dla_sql);
-    // $wynik = $polaczenie->query($query);
-   
-
-   
-   
-    // echo "<br>";
-    // echo "Ile wierszy ".$wynik->num_rows;
-    // echo "<br>";
-
-    // while($row = mysqli_fetch_array($wynik))
-    // {
-    //     $login_z_bazy = $row['login'];
-    //     $haslo_z_bazy = $row['haslo'];
-    //     $id = $row['id'];
-
-    //     echo "$id $login_z_bazy $haslo_z_bazy";
-    //     echo "<br>";
-
-    // }
-    // exit();
-    // return 1;
-}
-
 function zaloguj($polaczenie, $login){
-    // $id_uzytkownika = pobierz_id_uzytkownika($polaczenie, $login);
-    // echo $id_uzytkownika;
-    // zapisz_zalogowanie_w_bazie($id_uzytkownika);
-    // zapisz_zalogowanie_w_sesji($id_uzytkownika);
-
-
+    $id_uzytkownika = pobierz_id_uzytkownika_z_bazy($polaczenie, $login);
+    zapisz_zalogowanie_w_sesji($id_uzytkownika);
 }
 
+function zapisz_zalogowanie_w_sesji($id_uzytkownika){
+    $_SESSION['id_uzytkownika'] = $id_uzytkownika;
+    unset($_SESSION['blad']);
+}
+
+function pobierz_id_uzytkownika_z_bazy($polaczenie,$login){
+    $query = sprintf("SELECT * FROM uzytkownicy WHERE login ='%s'",$login);
+    $wynik = $polaczenie->query($query);
+    $ile_wierszy = $wynik->num_rows;
+
+    if ($ile_wierszy != 1){
+        blad($polaczenie, "Wystapil blad. Nieprawidlowa liczba uzytkownikow ".$ile_wierszy);
+    }
+
+    while($row = mysqli_fetch_array($wynik))
+    {
+        $id = $row['id'];
+        return $id;
+    }
+}
 ?>

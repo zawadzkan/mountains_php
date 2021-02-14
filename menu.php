@@ -6,7 +6,7 @@
         <li><a href="kursy.php">Kursy</a></li>
         <li><a href="o_nas.php">O nas</a></li>
 
-        <?php if (isset($_SESSION['zalogowany'])    ) { ?>
+        <?php if (isset($_SESSION['id_uzytkownika'])    ) { ?>
             <li><a href="wyloguj.php">Wyloguj się</a></li>
         <?php } else { ?>
             <li><a href="logowanie.php">Zaloguj się</a></li>

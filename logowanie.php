@@ -34,7 +34,7 @@
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="wprowadz_dane.php" method="post">
+                    <form action="zarejstruj.php" method="post">
                         <div class="modal-body">
                             <div class="form-rejestr">
                                 <label> Imię </label>

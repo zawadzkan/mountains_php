@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['zalogowany'])) {
+if (!isset($_SESSION['id_uzytkownika'])) {
     header('Location: logowanie.php');
     exit();
 }
