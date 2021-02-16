@@ -1,0 +1,7 @@
+
+.image {
+    width: 360px;
+    height: 250px;
+    float: left; 
+    border-radius: 50%;
+  }
