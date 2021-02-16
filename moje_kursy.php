@@ -1,5 +1,9 @@
 <?php
 session_start(); 
+if (!isset($_SESSION['id_uzytkownika'])) {
+    header('Location: logowanie.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -7,16 +11,12 @@ session_start();
 
 <head>
     <meta charset="utf-8" />
-    <title>Górskie wędrówki</title>
+    <title>Moje kursy</title>
     <link rel="stylesheet" href="main.css" />
 </head>
 
-
 <body>
-    <h1>Zdobywaj szczyty</h1>
-
-   <?php require_once "menu.php"; ?>
-  
+    <?php require_once "menu.php"; ?>
 
 </body>
 

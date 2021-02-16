@@ -1,12 +1,11 @@
 <?php
-session_start();
-
+session_start(); 
 if (!isset($_SESSION['id_uzytkownika'])) {
     header('Location: logowanie.php');
     exit();
 }
-
 ?>
+
 <!DOCTYPE HTML>
 <html lang="pl">
 
@@ -17,12 +16,7 @@ if (!isset($_SESSION['id_uzytkownika'])) {
 </head>
 
 <body>
-
     <?php require_once "menu.php"; ?>
-
-    <div class="okno">
-    <iframe width="1000" height="500" src="http://dane.gov.pl/embed/resource/7005" frameBorder="0"></iframe>
-    </div>
 
 </body>
 

@@ -1,62 +1,56 @@
 <?php
-session_start(); ?>
+session_start(); 
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+    CURLOPT_URL => "https://bing-image-search1.p.rapidapi.com/images/search?q=mountains",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => [
+        "x-rapidapi-host: bing-image-search1.p.rapidapi.com",
+        "x-rapidapi-key: cbd44c5216msh24f03c568e688b1p11e43bjsn6f3a460ec7c5"
+    ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error #:" . $err;
+} else {
+    // echo $response;
+}
+
+$array = json_decode($response, true);
+?>
 
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
     <meta charset="utf-8"/>
     <title>Wyprawy</title>
-    <link rel="stylesheet"  href="main.css" />
+    <link rel="stylesheet"  href="wyprawy.css" />
 </head>
 
 <body>
 
     <?php require_once "menu.php"; ?>
-
-
-    <?php
-
-        $key = "AIzaSyA1t0VAp92of5e8TnHAMo-dLw1LV_dCIMk";
-        $base_url = "https://www.googleapis.com/youtube/v3/";
-        $channelId = "UChFr0plZ7_23KlTMFEKlMlA";
-        $maxResult = 10;
-
-        $API_URL = $base_url . "search?order=date&part=snippet&channelId=".$channelId."&maxResult=".$maxResult."&key=".$key;
-
-        $videos = json_decode( file_get_contents( $API_URL ) );
-
-        include "YTConnect.php";
-        $db = new YTConnect();
-        $conn = $db->connect();
-
-
-        $stmt = $conn->prepare("SELECT * FROM videos WHERE video_type = 1");
-        $stmt->execute();
-        $videos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        echo "<div class='row'>";
-        foreach($videos as $video){
-            echo '<iframe width="360" height="215" src="https://www.youtube.com/embed/'.$video['video_id'].'" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-            echo "</div>";
-            echo "<p>wybierz kurs</p>";
-        }
-
-
-
-        foreach($videos->items as $video) {
-
-            $sql = "INSERT INTO `videos` (`id`, `video_type`, `video_id`, `title`, `thumbnail_url`, `published_at`) VALUES (NULL, 1, :vid, :title, :turl, :pdate)";
-        
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(":vid", $video->id->videoId);
-        $stmt->bindParam(":title", $video->snippet->title);
-        $stmt->bindParam(":turl", $video->snippet->thumbnails->high->url);
-        $stmt->bindParam(":pdate", $video->snippet->published_at);
-
-        $stmt->execute();
-        }
-
-    ?>
-
+    <div id="results" data-url="<?php if (!empty($url)) echo $url ?>">
+            <?php
+            if (!empty($array)) {
+                foreach ($array['value'] as $key => $item) {
+                    echo '<img class="image" src="' . $item["thumbnailUrl"] . '" alt=""/>';
+                }
+            }
+            ?>
+        </div>
 </body>
 </html>
 

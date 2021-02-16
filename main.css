@@ -12,6 +12,7 @@ html{
     font-family: "Lato", Arial, sans-serif;
 }
 
+
 @media all{
 body{
     width: 100%;
@@ -19,7 +20,7 @@ body{
     color: #fff;
     background: linear-gradient(-45deg, #0B1316, #082E3B, #58828E ,#7F9B9E);
     background-size: 400% 400%;
-    position: relative;
+    /* position: relative; */
     animation: change 10s ease-in-out infinite;
     }
 }
@@ -244,3 +245,4 @@ h1{
     padding: 5rem 10rem;
     border-radius: 15px;
 }
+
