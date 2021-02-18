@@ -25,7 +25,7 @@ $sekret = "6Lf6Wy8aAAAAABbGkT-5W8FJAIxGpIbyM4IiqvX1";
 $sprawdz = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$sekret.'&response='.$_POST['g-recaptcha-response']);
 $odpowiedz = json_decode($sprawdz); 
 
-zarejestruj($polaczenie, $imie, $nazwisko, $login, $haslo, $haslo2, $email);
+zarejestruj($polaczenie, $imie, $nazwisko, $login, $haslo, $haslo2, $email, $odpowiedz);
 zaloguj($polaczenie, $login);
 zakoncz($polaczenie);
 
@@ -35,8 +35,8 @@ function zakoncz($polaczenie){
     exit();
 }
 
-function zarejestruj($polaczenie, $imie, $nazwisko, $login, $haslo, $haslo2, $email){
-    zwaliduj_dane_uzytkownika($polaczenie, $imie, $nazwisko, $email, $login, $haslo, $haslo2);
+function zarejestruj($polaczenie, $imie, $nazwisko, $login, $haslo, $haslo2, $email, $odpowiedz){
+    zwaliduj_dane_uzytkownika($polaczenie, $imie, $nazwisko, $email, $login, $haslo, $haslo2, $odpowiedz);
     zapisz_uzytkownika_do_bazy($polaczenie, $imie, $nazwisko, $login, $haslo, $email);
 }
 
@@ -50,20 +50,23 @@ function zapisz_uzytkownika_do_bazy($polaczenie, $imie, $nazwisko, $login, $hasl
     }   
 }
 
-function zwaliduj_dane_uzytkownika($polaczenie, $imie, $nazwisko, $email, $login, $haslo, $haslo2){
+function zwaliduj_dane_uzytkownika($polaczenie, $imie, $nazwisko, $email, $login, $haslo, $haslo2, $odpowiedz){
     $mail_zajety = sprawdz_czy_mail_zajety($polaczenie, $email);
     $login_zajety = sprawdz_czy_login_zajety($polaczenie, $login);
     $imie_niepoprawne = sprawdz_czy_imie_niepoprawne($imie);
     $nazwisko_niepoprawne = sprawdz_czy_nazwisko_niepoprawne($nazwisko);
     $haslo_rozne = sprawdz_czy_haslo_rozne($haslo, $haslo2);
     $haslo_niepoprawne = sprawdz_czy_haslo_niepoprawne($haslo);
+    $bot_not = sprawdz_czy_bot_not($odpowiedz);
+    $mail_niepoprawny = sprawdz_czy_mail_niepoprawny($email);
 
-    if($mail_zajety || $login_zajety || $nazwisko_niepoprawne || $imie_niepoprawne || $haslo_rozne || $haslo_niepoprawne){
-        wyswietl_blad_danych($imie_niepoprawne, $nazwisko_niepoprawne, $mail_zajety, $login_zajety, $haslo_rozne, $haslo_niepoprawne, $polaczenie);
+
+    if($mail_zajety || $login_zajety || $nazwisko_niepoprawne || $imie_niepoprawne || $haslo_rozne || $haslo_niepoprawne || $bot_not || $mail_niepoprawny){
+        wyswietl_blad_danych($imie_niepoprawne, $nazwisko_niepoprawne, $mail_zajety, $login_zajety, $haslo_rozne, $haslo_niepoprawne, $bot_not, $mail_niepoprawny, $polaczenie);
     }
 }
 
-function wyswietl_blad_danych($imie_niepoprawne, $nazwisko_niepoprawne, $mail_zajety, $login_zajety, $haslo_rozne, $haslo_niepoprawne, $polaczenie){
+function wyswietl_blad_danych($imie_niepoprawne, $nazwisko_niepoprawne, $mail_zajety, $login_zajety, $haslo_rozne, $haslo_niepoprawne, $bot_not, $mail_niepoprawny, $polaczenie){
     $komunikat = "";
 
     if($imie_niepoprawne){
@@ -88,6 +91,14 @@ function wyswietl_blad_danych($imie_niepoprawne, $nazwisko_niepoprawne, $mail_za
 
     if($haslo_niepoprawne){
         $komunikat = $komunikat."Hasło musi zawierać od 8 do 20 znaków. ";
+    }
+
+    if($bot_not){
+        $komunikat = $komunikat."Zaznacz, że nie jesteś botem. ";
+    }
+
+    if($mail_niepoprawny){
+        $komunikat = $komunikat."Niepoprawny adres e-mail. ";
     }
 
     blad($polaczenie, $komunikat);
@@ -146,6 +157,20 @@ function sprawdz_czy_haslo_rozne($haslo, $haslo2){
 
 function sprawdz_czy_haslo_niepoprawne($haslo){
     if((strlen($haslo)<8) || (strlen($haslo)>20)){
+        return true;
+    }
+    return false;
+}
+
+function sprawdz_czy_bot_not($odpowiedz){
+    if($odpowiedz->success==false){
+        return true;
+    }
+    return false;
+}
+
+function sprawdz_czy_mail_niepoprawny($email){
+    if ((filter_var($email, FILTER_VALIDATE_EMAIL)==false)){
         return true;
     }
     return false;
