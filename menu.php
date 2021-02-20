@@ -1,5 +1,4 @@
 <div class="menu">
-
     <ul>
         <li><a href="index.php">Strona główna</a></li>
         <li><a href="wyprawy.php">Nasze wyprawy</a></li>
