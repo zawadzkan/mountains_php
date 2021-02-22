@@ -113,8 +113,28 @@ body{
     text-align: center;
 }
 
+.navbar-invarse{
+    background: transparent;
+    border-color: transparent;
+}
 
-.menu {
+.navbar-inverse .navbar-brand{
+    color:#fff;
+    font-family: monospace;
+    font-size: 30px;
+    margin-top: 5px;
+    margin-right: 35px;
+}
+
+
+#myNavbar .navbar-nav li a{
+    color:#fff;
+    font-size: 18px;
+    font-family: monospace;
+    margin-top: 5px;
+}
+
+/* .menu {
     position: absolute;
     left: 50%;
     top: 10%;
@@ -138,8 +158,8 @@ body{
     font-size: xx-large;
     padding: 0px 30px; 
     text-align: center;
-    /* margin-left: auto;
-    margin-right: auto; */
+    margin-left: auto;
+    margin-right: auto;
     
 }
 
@@ -158,8 +178,8 @@ body{
     height: auto;
     border: 1px solid white;
     margin: auto auto auto auto;
-}
-
+} 
+*/
 
 
 h1{
