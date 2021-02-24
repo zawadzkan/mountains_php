@@ -25,102 +25,22 @@ body{
     }
 }
 
-.box{
-    width: 400px;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-image: url("image.jpg");
-    text-align: center;
-    border-radius: 15px;
-}
-
-.box h2{
-    color: #0B1316;
-    text-transform: uppercase;
-    font-style: "Lato", Arial, sans-serif;
-    font-weight: 700;
-    font-size: 30px;
-}
-
-.box input[type = "text"], .box input[type = "password"]{
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid #6A1B9A;
-    padding: 14px 10px;
-    width: 200px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
-    transition: 0.25s;
-}
-
-.box input[type = "text"]:focus, .box input[type = "password"]:focus{
-    width: 280px;
-    border-color: #CE93D8;
-}
-
-.box input[type = "submit"]{
-    border: 0;
-    background: #CE93D8;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid #CE93D8;
-    padding: 14px 40px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
-    transition: 0.25s;
-    cursor: pointer;
-}
-
-.box input[type = "submit"]:hover{
-    background: #6A1B9A;
-    border: #6A1B9A;
-}
-
-.przycisk input[type = "submit"]{
-    border: 0;
-    background: #CE93D8;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid #CE93D8;
-    padding: 14px 40px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
-    transition: 0.25s;
-    cursor: pointer;
-}
-
-.przycisk input[type = "submit"]:hover{
-    background: #6A1B9A;
-    border: #6A1B9A;
-}
 
 .blad{
     color:red;
     font-size: 10px;
     display: block;
-    padding: 550px 100px;
     text-align: center;
 }
 
-.navbar-invarse{
-    background: transparent;
-    border-color: transparent;
+
+.container-fluid{
+    background-color: transparent;
 }
 
 .navbar-inverse .navbar-brand{
     color:#fff;
-    font-family: monospace;
+    font-family: "Lato", Arial, sans-serif;
     font-size: 30px;
     margin-top: 5px;
     margin-right: 35px;
@@ -130,60 +50,14 @@ body{
 #myNavbar .navbar-nav li a{
     color:#fff;
     font-size: 18px;
-    font-family: monospace;
+    font-family: "Lato", Arial, sans-serif;
     margin-top: 5px;
 }
 
-/* .menu {
-    position: absolute;
-    left: 50%;
-    top: 10%;
-    transform: translate(-50%,-50%);
-}
-
-.menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    height: 100px;
-    width: max-content;
-    overflow: hidden;
-}
-
-
-.menu li {
-    display: inline-block;
-    color: white;
-    font-family: "Lato", Arial, sans-serif; 
-    font-size: xx-large;
-    padding: 0px 30px; 
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    
-}
-
-.menu li a{
-    color: white;
-    text-decoration: none;
-    display: block;
-    height: auto;
-    width: auto;
-    float: none;
-
-}
-
-.menu li a:hover {
-    width: auto;
-    height: auto;
-    border: 1px solid white;
-    margin: auto auto auto auto;
-} 
-*/
 
 
 h1{
-    font-size: 5rem;
+    font-size: 50px;
     text-transform: uppercase;
     letter-spacing: 2px;
     border: 3px solid #fff;
@@ -191,7 +65,10 @@ h1{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 5rem 10rem;
+    padding: 10rem 15rem;
+    font-family: "Lato", Arial, sans-serif;
+    text-align: center;
+    white-space:nowrap;
 }
 
  @keyframes change {
@@ -288,7 +165,7 @@ h1{
 	transition: all 0.1s linear;
 }
 .panel-login>.panel-heading a.active{
-	color: #029f5b;
+	color:  #59B2E6;
 	font-size: 18px;
 }
 .panel-login>.panel-heading hr{
@@ -335,18 +212,9 @@ h1{
 	background-color: #53A3CD;
 	border-color: #53A3CD;
 }
-.forgot-password {
-	text-decoration: underline;
-	color: #888;
-}
-.forgot-password:hover,
-.forgot-password:focus {
-	text-decoration: underline;
-	color: #666;
-}
 
 .btn-register {
-	background-color: #1CB94E;
+	background-color:  #59B2E6;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
@@ -354,12 +222,56 @@ h1{
 	font-weight: normal;
 	padding: 14px 0;
 	text-transform: uppercase;
-	border-color: #1CB94A;
+	border-color:  #59B2E6;
 }
 .btn-register:hover,
 .btn-register:focus {
 	color: #fff;
-	background-color: #1CA347;
-	border-color: #1CA347;
+	background-color:  #59B2E6;
+	border-color:  #59B2E6;
+}
+
+.kursy{
+    color: white; 
+    font-family: 'Lato', Arial, sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 3px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5rem 10rem; 
+    text-align: center;
+    white-space:nowrap;
+}
+
+.row{
+    margin:10px;
+}
+
+.col-lg-1{
+    margin-left: 200px;
+}
+
+.modal-dialog{
+    color: black; 
+}
+
+.moje-kursy{
+    color: white; 
+    font-family: 'Lato', Arial, sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 3px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5rem 10rem; 
+    text-align: center;
+    white-space:nowrap;
 }
 

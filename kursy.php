@@ -59,11 +59,11 @@ function blad($polaczenie, $komunikat){
 <body>
     <?php require_once "menu.php"; ?>
 
-    <div style="margin: 250px">
+    <div class="kursy">
         <?php $ids = array("Mały Tatromaniak", "Duży Tatromaniak", "Rysy 2021", "Królewna Śnieżka");
         foreach ($ids as $id) { ?>
-            <div class="row" id="contact" style="margin: 10px;">
-                <div class="col-lg-2" style="color: white;">
+            <div class="row" id="contact">
+                <div class="col-lg-2">
                     <?php echo $id ?>
                 </div>
                 <div class="col-lg-1">
@@ -109,13 +109,10 @@ function blad($polaczenie, $komunikat){
                 </form>
             </div>
         </div>
-
 </body>
 <script>
-    //jQuery Library Comes First
-    //Bootstrap Library
     $(document).ready(function() {
-        $('#contact-modal').on('show.bs.modal', function(e) { //Modal Event
+        $('#contact-modal').on('show.bs.modal', function(e) {
             var nazwaKursu = $(e.relatedTarget).data('nazwa-kursu');
             console.log(nazwaKursu);
             $(this).find("#nazwa_kursu").text(nazwaKursu);
@@ -123,5 +120,4 @@ function blad($polaczenie, $komunikat){
         });
     });
 </script>
-
 </html>

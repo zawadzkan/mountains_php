@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 $curl = curl_init();
 
 curl_setopt_array($curl, [
@@ -37,20 +37,82 @@ $array = json_decode($response, true);
     <meta charset="utf-8"/>
     <title>Wyprawy</title>
     <link rel="stylesheet"  href="wyprawy.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            top: 25%;
+        }
+
+        .image {
+            width: 700px;
+            height: 500px;
+            float: left;
+            border-radius: 0%;
+            margin: 15px;
+        }
+  
+          
+        #results {
+            margin-top: 10px;
+        }
+          
+  
+
+    </style>
 </head>
 
 <body>
-
-    <?php require_once "menu.php"; ?>
-    <div id="results" data-url="<?php if (!empty($url)) echo $url ?>">
+     <?php require_once "menu.php"; ?>
+     <div id="results" data-url="<?php if (!empty($url)) echo $url ?>">
             <?php
             if (!empty($array)) {
-                foreach ($array['value'] as $key => $item) {
-                    echo '<img class="image" src="' . $item["thumbnailUrl"] . '" alt=""/>';
-                }
+            ?>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <?php
+                        foreach ($array['value'] as $key => $item) {
+                            echo '<div class="swiper-slide"><img class="image" src="' . $item["thumbnailUrl"] . '" alt=""/></div>';
+                        }
+                        ?>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            <?php
             }
             ?>
         </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
 </body>
 </html>
 

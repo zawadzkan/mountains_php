@@ -37,13 +37,14 @@ function pobierz_zakupienia_z_bazy($id_uzytkownika, $polaczenie)
 
 <body>
     <?php require_once "menu.php"; ?>
-    <div class="row" style="margin-top: 300px; margin-left: 300px; font-size:20px">
+    <div class="moje-kursy" style="font-family: 'Lato', Arial, sans-serif; text-transform: uppercase; white-space:nowrap;  width: 1500px;">
+    <div class="row" style="margin-top: 50px; margin-left: 300px; font-size:20px;">
         <div class="col-lg-2"> Nazwa kursu</div>
         <div class="col-lg-2"> Imie uczestnika</div>
         <div class="col-lg-3"> Nazwisko uczestnika</div>
     </div>
-
-    <!-- <div style="margin: 300px"> -->
+    
+    
     <?php
     while ($zakupienie = mysqli_fetch_array($zakupienia)) { ?>
         <div class="row" style="margin-top: 20px; margin-left: 300px">
@@ -52,6 +53,7 @@ function pobierz_zakupienia_z_bazy($id_uzytkownika, $polaczenie)
             <div class="col-lg-3" style="font-size: 15px;"> <?php echo $zakupienie["nazwisko_uczestnika"]; ?></div>
         </div>
     <?php } ?>
+    </div>
 
 </body>
 
